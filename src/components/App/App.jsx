@@ -23,10 +23,21 @@ export default function App() {
     });
   };
 
+  // const deleteTask = taskId => {
+  //   setTasks(prevTasks => {
+  //     return prevTasks.filter(task => task.id !== taskId);
+  //   });
+  // };
   const deleteTask = taskId => {
-    setTasks(prevTasks => {
-      return prevTasks.filter(task => task.id !== taskId);
-    });
+    const confirmed = window.confirm(
+      'Are you sure you want to delete this task?'
+    );
+
+    if (confirmed) {
+      setTasks(prevTasks => {
+        return prevTasks.filter(task => task.id !== taskId);
+      });
+    }
   };
 
   const visibleTasks = tasks.filter(task =>
