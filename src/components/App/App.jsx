@@ -40,6 +40,13 @@ export default function App() {
     }
   };
 
+  const editTask = updatedTask => {
+    console.log('Edited task:', updatedTask);
+    setTasks(prevTasks =>
+      prevTasks.map(task => (task.id === updatedTask.id ? updatedTask : task))
+    );
+  };
+
   const visibleTasks = tasks.filter(task =>
     task.text.toLowerCase().includes(filter.toLowerCase())
   );
@@ -48,7 +55,7 @@ export default function App() {
     <div className={css.container}>
       <Form onAdd={addTask} />
       <Filter value={filter} onFilter={setFilter} />
-      <TaskList tasks={visibleTasks} onDelete={deleteTask} />
+      <TaskList tasks={visibleTasks} onDelete={deleteTask} onEdit={editTask} />
     </div>
   );
 }
